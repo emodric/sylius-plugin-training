@@ -14,7 +14,7 @@ final class SummaryPage extends BaseSummaryPage
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'gift_wrapped' => '#sylius-gift-wrapped',
+            'gift_wrapped' => '#sylius_cart_giftWrap',
         ]);
     }
 }

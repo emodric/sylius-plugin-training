@@ -5,3 +5,13 @@ services:
             -
                 name: form.type_extension
                 extended_type: Sylius\Bundle\OrderBundle\Form\Type\CartType
+
+    acme.sylius_example_plugin.block.gift_wrapping_form:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - "@@AcmeSyliusExamplePlugin/_giftWrappingForm.html.twig"
+        tags:
+            -
+                name: kernel.event_listener
+                event: sonata.block.event.sylius.shop.cart.summary.after_coupon
+                method: onBlockEvent
