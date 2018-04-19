@@ -1,0 +1,7 @@
+services:
+    acme.sylius_example_plugin.form.extension.cart_type_extension:
+        class: Acme\SyliusExamplePlugin\Form\Extension\CartTypeExtension
+        tags:
+            -
+                name: form.type_extension
+                extended_type: Sylius\Bundle\OrderBundle\Form\Type\CartType

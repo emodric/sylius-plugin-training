@@ -1,3 +1,4 @@
+@gift_wrapping
 Feature: Gift wrapping
   In order to purchase a gift
   As a Visitor
