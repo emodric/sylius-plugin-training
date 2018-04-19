@@ -15,6 +15,8 @@ final class GiftWrapperProcessor implements OrderProcessorInterface
     /** @var AdjustmentFactoryInterface */
     private $adjustmentFactory;
 
+    private const GIFT_WRAPPING = 'gift_wrapping';
+
     public function __construct(AdjustmentFactoryInterface $adjustmentFactory)
     {
         $this->adjustmentFactory = $adjustmentFactory;
@@ -26,6 +28,8 @@ final class GiftWrapperProcessor implements OrderProcessorInterface
             return;
         }
 
+        $order->removeAdjustments(self::GIFT_WRAPPING);
+
         if (!$order->isGiftWrap()) {
             return;
         }
@@ -34,7 +38,7 @@ final class GiftWrapperProcessor implements OrderProcessorInterface
         $adjustment = $this->adjustmentFactory->createNew();
 
         $adjustment->setAmount(1000);
-        $adjustment->setType('gift_wrapping');
+        $adjustment->setType(self::GIFT_WRAPPING);
 
         $order->addAdjustment($adjustment);
     }
