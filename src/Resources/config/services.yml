@@ -20,4 +20,9 @@ services:
         class: Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperProcessor
         arguments: ['@sylius.factory.adjustment']
         tags:
-            - { name: sylius.order_processor }
+            - { name: sylius.order_processor, priority: 51 }
+
+    acme.sylius_example_plugin.order_processor.gift_wrapper_adjustment_clearer_processor:
+        class: Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperAdjustmentClearerProcessor
+        tags:
+            - { name: sylius.order_processor, priority: 52 }
