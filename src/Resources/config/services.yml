@@ -15,3 +15,9 @@ services:
                 name: kernel.event_listener
                 event: sonata.block.event.sylius.shop.cart.summary.after_coupon
                 method: onBlockEvent
+
+    acme.sylius_example_plugin.order_processor.gift_wrapper_processor:
+        class: Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperProcessor
+        arguments: ['@sylius.factory.adjustment']
+        tags:
+            - { name: sylius.order_processor }
