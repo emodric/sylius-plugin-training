@@ -1,0 +1,28 @@
+services:
+    acme.sylius_example_plugin.form.extension.cart_type_extension:
+        class: Acme\SyliusExamplePlugin\Form\Extension\CartTypeExtension
+        tags:
+            -
+                name: form.type_extension
+                extended_type: Sylius\Bundle\OrderBundle\Form\Type\CartType
+
+    acme.sylius_example_plugin.block.gift_wrapping_form:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - "@@AcmeSyliusExamplePlugin/_giftWrappingForm.html.twig"
+        tags:
+            -
+                name: kernel.event_listener
+                event: sonata.block.event.sylius.shop.cart.summary.after_coupon
+                method: onBlockEvent
+
+    acme.sylius_example_plugin.order_processor.gift_wrapper_processor:
+        class: Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperProcessor
+        arguments: ['@sylius.factory.adjustment']
+        tags:
+            - { name: sylius.order_processor, priority: 51 }
+
+    acme.sylius_example_plugin.order_processor.gift_wrapper_adjustment_clearer_processor:
+        class: Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperAdjustmentClearerProcessor
+        tags:
+            - { name: sylius.order_processor, priority: 52 }

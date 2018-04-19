@@ -1,0 +1,6 @@
+Acme\SyliusExamplePlugin\Entity\Order:
+    type: entity
+    table: sylius_order
+    fields:
+        giftWrap:
+            type: boolean
