@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\OrderProcessor;
 
+use Acme\SyliusExamplePlugin\Entity\Order;
 use Sylius\Component\Core\Model\AdjustmentInterface;
 use Sylius\Component\Order\Factory\AdjustmentFactoryInterface;
 use Sylius\Component\Order\Model\OrderInterface;
@@ -21,6 +22,14 @@ final class GiftWrapperProcessor implements OrderProcessorInterface
 
     public function process(OrderInterface $order): void
     {
+        if (!$order instanceof Order) {
+            return;
+        }
+
+        if (!$order->isGiftWrap()) {
+            return;
+        }
+
         /** @var AdjustmentInterface $adjustment */
         $adjustment = $this->adjustmentFactory->createNew();
 
