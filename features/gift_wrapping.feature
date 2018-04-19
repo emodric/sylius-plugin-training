@@ -11,4 +11,5 @@ Feature: Gift wrapping
   Scenario: Receiving fixed discount for my cart
     When I add product "PHP T-Shirt" to the cart
     And I request to pack my order as a gift
+    And I update my cart
     Then my cart total should be "$110.00"

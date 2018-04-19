@@ -31,7 +31,7 @@ class GiftWrapperProcessorSpec extends ObjectBehavior
     }
 
     function it_adds_a_ten_dollar_to_order_total_if_gift_wrapping_requested(
-        Order $g,
+        Order $order,
         AdjustmentFactoryInterface $adjustmentFactory,
         AdjustmentInterface $adjustment
     ): void {
